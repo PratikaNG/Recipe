@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Taco Recipes</title>
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+</head>
+
+<body>
+  <h1>Taco Town 🌮</h1>
+
+  <form action="/recipe" method="POST" class="buttons">
+    <button type="submit" value="chicken" name="choice">🍗</button>
+    <button type="submit" value="beef" name="choice">🥩</button>
+    <button type="submit" value="fish" name="choice">🐟</button>
+  </form>
+  <div id="recipeContainer" class="hidden">
+
+    
+    <% if (locals.recipe) {%>
+      <h1><%= recipe.name %></h1>
+
+      <ul id="ingredientsList">
+        <li><em>Price</em> : $<%= recipe.price %></li>
+        <li><em>Protein</em> : <%= recipe.ingredients.protein.name %></li>
+        <li> <em>Preparation</em> : <%= recipe.ingredients.protein.preparation %></li>
+        <li> <em>Salsa</em> : <%= recipe.ingredients.salsa.name %> and spice level is <%= recipe.ingredients.salsa.spiciness %></li>
+        <li> <em>Toppings</em> : <% recipe.ingredients.toppings.forEach(topping =>{%>
+          <ul>
+            <li><%= topping.name  %> : <%= topping.ingredients %></li>
+          </ul>
+        <% }) %>
+        </li>
+        
+      </ul>
+
+    <% }else{ %>
+      <h1>Select your recipe here</h1>
+      <% } %>
+
+  </div>
+</body>
+
+</html>
